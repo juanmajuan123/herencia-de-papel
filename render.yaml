@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: herencia-de-papel
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --workers 2 --bind 0.0.0.0:$PORT
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: GOOGLE_SHEET_ID
+        sync: false
+      - key: GOOGLE_API_KEY
+        sync: false
+      - key: INSTAGRAM_USER
+        sync: false
+      - key: WHATSAPP_NUMBER
+        sync: false
+      - key: SHEET_RANGE
+        value: Libros
+      - key: CACHE_SECONDS
+        value: "15"
